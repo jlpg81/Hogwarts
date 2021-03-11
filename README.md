@@ -12,7 +12,7 @@ Hogwarts is an app to connect handy technician with customers, where customers c
 
    `git clone https://github.com/AbdallahAltokhy/Hogwarts.git`
 
-2. install the dependencies
+2. From the project root file
 
    `cd client`
 
@@ -20,7 +20,7 @@ Hogwarts is an app to connect handy technician with customers, where customers c
 
    `npm start`
 
-3. install the dependencies
+3. From the project root file
 
    `cd server`
 
@@ -37,28 +37,31 @@ Hogwarts is an app to connect handy technician with customers, where customers c
 For the app full experience check below :
 
 - <u>For the customer experience</u>
-  
+
   - can go through the application & check the available services and book one
-  
+
   - can create an account & log in "When the user is logged in, you will find all the forms pre-filled with the data provided when signing up"
-  
+
   - pay for the booked services using this fake test card number "4242 4242 4242 4242"
-  
+
     ![](./APP-Snaps/User.png)
+
 - <u>For the Admin experience</u>
+
   - Just log in as admin using this email & password
     - Email : Admin@hogwarts.com
     - password : 123456
   - Automatically you will redirected to the admin page where you can:
+
     - Keep track of the business & see a list of all recent orders
-    
+
     - See a list of all customers with the total orders they made
-    
+
     - See a list of all services, add,update or delete one
-    
+
     - See a list of all technicians, add,update or delete one as well
-    
-      ![](./APP-Snaps/admin.png)
+
+      ![](./APP-Snaps/Admin.png)
 
 ## Tech stack
 
