@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { secretToken } = require('../config/db.config');
 
 function auth (req, res, next) {
 
@@ -7,7 +6,7 @@ function auth (req, res, next) {
   if (!token) return res.status(401).send('Access denied. No token provided');
 
   try {
-    const decoded = jwt.verify(token, secretToken);
+    const decoded = jwt.verify(token, process.env.secretToken);
     next();
   } catch (error) {
     res.status(400).send('Invalid token');

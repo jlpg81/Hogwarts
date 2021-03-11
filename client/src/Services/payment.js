@@ -6,7 +6,7 @@ const pay = async (amount, token) => {
 
   axios
     .post('http://localhost:4000/checkout', {
-      amount,
+      amount: amount * 100,
       token
     })
     .then((response) => {

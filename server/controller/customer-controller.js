@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const { Customer } = require('../model');
 const jwt = require('jsonwebtoken');
-const { secretToken } = require('../config/db.config');
 
 
 const registerUser = async (req, res) => {
@@ -14,7 +13,7 @@ const registerUser = async (req, res) => {
     password = await bcrypt.hash(password, salt);
 
     const customer = await Customer.create({ name, phone, email, password, location });
-    const token = jwt.sign({ id: customer.dataValues.id }, secretToken);
+    const token = jwt.sign({ id: customer.dataValues.id }, process.env.secretToken);
 
     res.header("x-auth-token", token)
       .header("access-control-expose-headers", "x-auth-token")

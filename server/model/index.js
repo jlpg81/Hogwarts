@@ -2,10 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const dbConfig = require('../config/db.config');
 const db = {};
 
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+const sequelize = new Sequelize(process.env.DB, process.env.USER, process.env.PASSWORD, {
   host: 'localhost',
   dialect: 'mysql'
 }

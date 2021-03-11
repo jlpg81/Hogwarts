@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const { Customer } = require('../model');
 const jwt = require('jsonwebtoken');
-const { secretToken } = require('../config/db.config');
 
 const auth = async (req, res) => {
 
@@ -13,7 +12,7 @@ const auth = async (req, res) => {
   const validPassword = await bcrypt.compare(req.body.password, customer[0].password);
   if (!validPassword) return res.status(400).send("Invalid email or password.");
 
-  const token = jwt.sign({ id: customer[0].dataValues.id }, secretToken);
+  const token = jwt.sign({ id: customer[0].dataValues.id }, process.env.secretToken);
 
   res.send(token);
 

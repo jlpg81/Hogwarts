@@ -13,6 +13,7 @@ const useStyles = makeStyles({
 const Payment = (order) => {
 	const classes = useStyles();
 
+	//This is a public key, The secret key added to .env file
 	const publishableKey =
 		'pk_test_51IQB1zJgjiR5JIS9aB81HFYQ1HxdIjbgkxf2K1OYnrpzKW5hnAtfM9mkMkQh8cQ5ukkyxF87FriI4db16ASz8kNJ00C0ZWxaxX';
 

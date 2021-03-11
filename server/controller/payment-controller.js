@@ -1,6 +1,5 @@
-const dbConfig = require("../config/db.config");
 const Stripe = require("stripe");
-const stripe = new Stripe(dbConfig.stripeSecret);
+const stripe = new Stripe(process.env.stripeSecret);
 
 
 
