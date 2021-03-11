@@ -1,23 +1,21 @@
-import axios from 'axios';
-import { navigate } from '@reach/router';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import { navigate } from "@reach/router";
+import { toast } from "react-toastify";
 
 const pay = async (amount, token) => {
-
   axios
-    .post('http://localhost:4000/checkout', {
+    .post("http://localhost:4000/checkout", {
       amount: amount * 100,
-      token
+      token,
     })
     .then((response) => {
-      toast.success('Payment Success');
-      navigate('/');
+      toast.success("Payment Success");
+      navigate("/");
     })
     .catch((error) => {
-      console.log('Payment Error: ', error);
-      toast.error('Payment Error');
+      console.log("Payment Error: ", error);
+      toast.error("Payment Error");
     });
-
 };
 
 export default pay;
