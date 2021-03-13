@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 import AddressForm from "./Checkout/AddressForm";
+import userEvent from "@testing-library/user-event";
 
 test("should render app children", () => {
   const { container } = render(<App />);
@@ -29,8 +30,37 @@ test("another address form test", () => {
   render(
     <AddressForm user={mockUser} createOrder={() => {}} handleNext={() => {}} />
   );
-  expect(screen.getByRole("button", { type: "submit" })).toBeInTheDocument();
+  expect(
+    screen.getByRole("button", { name: "Confirm Order" })
+  ).toBeInTheDocument();
 });
+test("another address form test", () => {
+  render(
+    <AddressForm user={mockUser} createOrder={() => {}} handleNext={() => {}} />
+  );
+  expect(screen.getByRole("textbox", { name: "Email" })).toBeInTheDocument();
+});
+
+test("Typing in a textbox", () => {
+  render(
+    <AddressForm user={mockUser} createOrder={() => {}} handleNext={() => {}} />
+  );
+  const typedValue = "120 m";
+  userEvent.type(
+    screen.getByRole("textbox", { name: "Apartment-size" }),
+    typedValue
+  );
+  expect(screen.getByRole("textbox", { name: "Apartment-size" })).toHaveValue(
+    typedValue
+  );
+});
+
+// test('types inside textarea', () => {
+//   document.body.innerHTML = `<textarea />`
+
+//   userEvent.type(screen.getByRole('textbox'), 'Hello, World!')
+//   expect(screen.getByRole('textbox')).toHaveValue('Hello, World!')
+// })
 const mockUser = {
   email: "ball@ball.ball",
   id: 999999999,
