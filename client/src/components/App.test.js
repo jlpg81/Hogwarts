@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import App from "./App";
 import AddressForm from "./Checkout/AddressForm";
 import userEvent from "@testing-library/user-event";
+import Header from "./Home/Header/Header";
 
 test("should render app children", () => {
   const { container } = render(<App />);
@@ -55,12 +56,14 @@ test("Typing in a textbox", () => {
   );
 });
 
-// test('types inside textarea', () => {
-//   document.body.innerHTML = `<textarea />`
+test("should render Header", () => {
+  const { container } = render(<Header user={mockUser} />);
 
-//   userEvent.type(screen.getByRole('textbox'), 'Hello, World!')
-//   expect(screen.getByRole('textbox')).toHaveValue('Hello, World!')
-// })
+  expect(container.textContent).toMatch(
+    "Home maintenance made easier and betterLorem Ipsum is not simply random text."
+  );
+});
+
 const mockUser = {
   email: "ball@ball.ball",
   id: 999999999,
