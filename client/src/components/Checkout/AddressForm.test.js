@@ -1,5 +1,5 @@
 import AddressForm from "./AddressForm";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockUser from "../mocks";
 
@@ -59,5 +59,23 @@ describe("Testing general features of the Address Form", () => {
     expect(screen.getByRole("textbox", { name: "Apartment-size" })).toHaveValue(
       typedValue
     );
+  });
+});
+
+describe("Testing button features", () => {
+  it("should call createOrder on submission", async () => {
+    const createOrder = jest.fn();
+    const onSubmit = jest.fn();
+    //console.log(AddressForm.onSubmit);
+    render(
+      <AddressForm
+        user={mockUser}
+        createOrder={createOrder}
+        handleNext={() => {}}
+      />
+    );
+    userEvent.click(screen.getByText("Confirm Order"));
+    //expect(onSubmit).toHaveBeenCalled();
+    await waitFor(() => expect(createOrder).toHaveBeenCalled());
   });
 });
