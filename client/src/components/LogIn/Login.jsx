@@ -16,7 +16,7 @@ export default function Login({ user }) {
       const { data: jwt } = await verifyCustomer(email, password);
       localStorage.setItem("token", jwt);
 
-      jwt_decode(jwt).id === 44
+      jwt_decode(jwt).id === 3
         ? (window.location = "/admin/home")
         : (window.location = "/");
     } catch (error) {
