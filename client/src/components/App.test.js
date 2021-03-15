@@ -5,21 +5,21 @@ import userEvent from "@testing-library/user-event";
 import Header from "./Home/Header/Header";
 
 test("should render app children", () => {
-  const { container } = render(<App />);
+  render(<App />);
 
-  expect(container.textContent).toMatch(
-    "Home maintenance made easier and betterLorem Ipsum is not simply random text."
-  );
+  expect(
+    screen.getByText("Home maintenance made easier and better")
+  ).toBeInTheDocument();
 });
 
 test("trying something from Mo's demo", () => {
   render(<App />);
-  // console.log("is also this green", render(<App />));
   const text = screen.getByText("Home maintenance made easier and better");
   expect(text).toBeInTheDocument();
 });
 
-test("playing with the Address Form", () => {
+test("Should render parts of the Address Form", () => {
+  //const createOrder = jest.fn()
   render(
     <AddressForm user={mockUser} createOrder={() => {}} handleNext={() => {}} />
   );
@@ -27,7 +27,7 @@ test("playing with the Address Form", () => {
   expect(screen.getByText("Address")).toBeInTheDocument();
 });
 
-test("another address form test", () => {
+test("Should render button in address form", () => {
   render(
     <AddressForm user={mockUser} createOrder={() => {}} handleNext={() => {}} />
   );
@@ -35,14 +35,14 @@ test("another address form test", () => {
     screen.getByRole("button", { name: "Confirm Order" })
   ).toBeInTheDocument();
 });
-test("another address form test", () => {
+test("Should render textbox in address form test", () => {
   render(
     <AddressForm user={mockUser} createOrder={() => {}} handleNext={() => {}} />
   );
   expect(screen.getByRole("textbox", { name: "Email" })).toBeInTheDocument();
 });
 
-test("Typing in a textbox", () => {
+test("Should type in a textbox", () => {
   render(
     <AddressForm user={mockUser} createOrder={() => {}} handleNext={() => {}} />
   );
