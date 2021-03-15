@@ -89,7 +89,7 @@ export default function Checkout({ user }) {
       orderDate,
       cost,
     });
-
+    console.log('this is hopefully the user ', user)
     await postOrder(cost, "Card", 1, user.id, serviceID);
   };
 

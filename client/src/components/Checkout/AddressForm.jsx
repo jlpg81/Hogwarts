@@ -126,7 +126,8 @@ export default function AddressForm({ createOrder, handleNext, user }) {
             <TextField
               id="datetime-local"
               name="date"
-              label="Preferred Date & Time"
+              role="datepicker"
+              aria-label="Preferred Date and Time"
               type="datetime-local"
               fullWidth
               InputLabelProps={{
