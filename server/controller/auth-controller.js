@@ -6,7 +6,7 @@ const auth = async (req, res) => {
   //validate if user exist or not
   let customer = await Customer.findAll({ where: { email: req.body.email } });
   if (!customer.length)
-    return res.status(400).send("Invalid email or password.");
+    return res.status(400).send("Invalid email or password. ");
 
   //validate  password after
   const validPassword = await bcrypt.compare(
