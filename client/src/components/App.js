@@ -28,6 +28,7 @@ const App = () => {
     }
     //getting a list of all orders to pass it to Dashboard
     axios("http://localhost:4000/orders").then((res) => {
+      console.log("this is res", res.data);
       setOrders(res.data);
     });
   }, []);
