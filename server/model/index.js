@@ -4,8 +4,6 @@ const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
 const db = {};
 
-console.log("process.env", process.env.PASSWORD);
-
 const sequelize = new Sequelize(
   process.env.DB,
   process.env.USER,
@@ -13,6 +11,7 @@ const sequelize = new Sequelize(
   {
     host: "localhost",
     dialect: "postgres",
+    logging: false,
   }
 );
 
