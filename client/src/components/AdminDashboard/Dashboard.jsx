@@ -103,8 +103,6 @@ export default function Dashboard({ orders, totalCost, logOut }) {
     getTechnicians().then((res) => setTechnicians(res));
   }, []);
 
-  console.log(technicians);
-
   const params = useParams();
   const dashRouter = (params) => {
     switch (params.dashboard) {

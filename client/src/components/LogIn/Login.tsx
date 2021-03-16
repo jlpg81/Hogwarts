@@ -1,17 +1,22 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "@reach/router";
+// import { Link } from "@reach/router";
 import { verifyCustomer } from "../../Services/authService";
 import "./Login.css";
 import img from "./imgs/undraw_Nature_fun_re_iney.svg";
 import { toast } from "react-toastify";
 import jwt_decode from "jwt-decode";
+const { Link } = require("@reach/router");
 
-export default function Login({ user }) {
+export default function Login() {
   const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = async ({ email, password }) => {
+  const onSubmit = async ({ email, password }:{ email:string, password:string }) => {
+    // interface Credentials {
+    //   email: string;
+    //   password: string;
+    // }
     try {
       const { data: jwt } = await verifyCustomer(email, password);
       localStorage.setItem("token", jwt);
