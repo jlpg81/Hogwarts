@@ -24,9 +24,9 @@ export default function AddressForm({ createOrder, handleNext, user }) {
     let amount = 0;
 
     if (ApartmentSize > 100) {
-      if (rooms == 2) amount = 50;
-      if (rooms == 3) amount = 60;
-      if (rooms == 4) amount = 70;
+      if (rooms === 2) amount = 50;
+      if (rooms === 3) amount = 60;
+      if (rooms === 4) amount = 70;
       if (rooms >= 4) amount = 80;
     } else {
       amount = 40;

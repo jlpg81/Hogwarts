@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
 import { useForm } from "react-hook-form";
-// import { Link } from "@reach/router";
 import { verifyCustomer } from "../../Services/authService";
 import "./Login.css";
 import img from "./imgs/undraw_Nature_fun_re_iney.svg";
@@ -13,17 +11,13 @@ export default function Login() {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = async ({ email, password }:{ email:string, password:string }) => {
-    // interface Credentials {
-    //   email: string;
-    //   password: string;
-    // }
     try {
       const { data: jwt } = await verifyCustomer(email, password);
       localStorage.setItem("token", jwt);
 
-      jwt_decode(jwt).id === 3
-        ? (window.location = "/admin/home")
-        : (window.location = "/");
+      jwt_decode<Token>(jwt).id === 3
+        ? (window.location.href = "/admin/home")
+        : (window.location.href = "/");
     } catch (error) {
       if (error.response && error.response.status === 400) {
         toast.error("Invalid email or password", {
@@ -90,4 +84,8 @@ export default function Login() {
       <img className="login-img" src={img} alt="" />
     </div>
   );
+}
+
+interface Token {
+  id:number;
 }

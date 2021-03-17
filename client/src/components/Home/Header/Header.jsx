@@ -3,7 +3,7 @@ import headerImg from "./imgs/1.png";
 import header from "./imgs/header.svg";
 import { Link } from "@reach/router";
 
-const Header = ({ user }) => {
+const Header = ({ user })=> {
   return (
     <>
       <div className="header-container">

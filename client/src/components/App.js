@@ -22,9 +22,11 @@ const App = () => {
   useEffect(() => {
     const jwt = localStorage.getItem("token");
     if (jwt) {
-      axios(
-        `http://localhost:4000/customer/${jwt_decode(jwt).id}`
-      ).then((res) => setUser(res.data[0]));
+      axios(`http://localhost:4000/customer/${jwt_decode(jwt).id}`).then(
+        (res) => {
+          setUser(res.data[0]);
+        }
+      );
     }
     //getting a list of all orders to pass it to Dashboard
     axios("http://localhost:4000/orders").then((res) => {

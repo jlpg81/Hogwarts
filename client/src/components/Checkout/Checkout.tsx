@@ -11,92 +11,39 @@ import AddressForm from "./AddressForm";
 import Review from "./Review";
 import Payment from "./PaymentForm";
 import postOrder from "../../Services/orderService";
+import CompleteOrder from './completeOrderInterface';
+import User from './UserInterface'
 
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    position: "relative",
-  },
-  layout: {
-    width: "auto",
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    marginTop: "100px",
-    marginBottom: "120px",
-    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
-      marginLeft: "auto",
-      marginRight: "auto",
-    },
-  },
-  paper: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
-      padding: theme.spacing(3),
-    },
-  },
-  stepper: {
-    padding: theme.spacing(3, 0, 5),
-  },
-  buttons: {
-    display: "flex",
-    justifyContent: "flex-end",
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
-  },
-}));
 
 const steps = ["Service details", "Payment details"];
 
-export default function Checkout({ user }) {
+export default function Checkout({ user }: { user: User }) {
   //create new order
-  const [order, setOrder] = useState({
+  let emptyOrder: CompleteOrder = {
+    serviceID: "",
     serviceName: "",
     customerName: "",
     customerEmail: "",
     customerMobile: "",
     customerAddress: "",
     apartmentSize: "",
-    roomsCount: "",
+    roomsCount: 0,
     orderDate: "",
-    cost: "",
-  });
+    cost: 0,
+  };
+  const [order, setOrder] = useState<CompleteOrder>(emptyOrder);
 
-  const createOrder = async (
-    serviceID,
-    customerName,
-    customerEmail,
-    customerMobile,
-    customerAddress,
-    apartmentSize,
-    roomsCount,
-    orderDate,
-    cost
-  ) => {
-    setOrder({
-      serviceID,
-      customerName,
-      customerEmail,
-      customerMobile,
-      customerAddress,
-      apartmentSize,
-      roomsCount,
-      orderDate,
-      cost,
-    });
-    console.log('this is hopefully the user ', user)
-    await postOrder(cost, "Card", 1, user.id, serviceID);
+  const createOrder = async (order: CompleteOrder) => {
+    setOrder(order);
+    console.log("this is hopefully the user ", user);
+    await postOrder(order.cost, "Card", 1, 
+    user.id,
+    order.serviceID);
   };
 
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
-    console.log("I AM HANDLE NEXT");
     setActiveStep(activeStep + 1);
   };
 
@@ -104,7 +51,7 @@ export default function Checkout({ user }) {
     setActiveStep(activeStep - 1);
   };
 
-  function getStepContent(step) {
+  function getStepContent(step: number) {
     switch (step) {
       case 0:
         return (
@@ -155,3 +102,44 @@ export default function Checkout({ user }) {
     </>
   );
 }
+
+
+
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    position: "relative",
+  },
+  layout: {
+    width: "auto",
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    marginTop: "100px",
+    marginBottom: "120px",
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 600,
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
+  },
+  paper: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3),
+    },
+  },
+  stepper: {
+    padding: theme.spacing(3, 0, 5),
+  },
+  buttons: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+  },
+}));

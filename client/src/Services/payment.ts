@@ -1,8 +1,9 @@
 import axios from "axios";
-import { navigate } from "@reach/router";
+// import { navigate } from "@reach/router";
 import { toast } from "react-toastify";
+const { navigate } = require('@reach/router')
 
-const pay = async (amount, token) => {
+const pay = async (amount:number, token:string) => {
   axios
     .post("http://localhost:4000/checkout", {
       amount: amount * 100,

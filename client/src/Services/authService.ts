@@ -1,4 +1,5 @@
-const axios = require("axios");
+// const axios = require("axios");
+import axios, { AxiosResponse } from 'axios'
 
 const verifyCustomer = (email: string, password:string) => {
   return axios
@@ -6,9 +7,8 @@ const verifyCustomer = (email: string, password:string) => {
       email,
       password,
     })
-    .then((response:any) => {
-      console.log('response',response);
-      
+    .then((response:AxiosResponse<string>) => {
+      console.log(response)
       return response;
     });
 };
