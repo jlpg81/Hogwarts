@@ -20,14 +20,14 @@ export default function AddressForm({ createOrder, handleNext, user }) {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    const { name, email, mobile, address, ApartmentSize, rooms, date } = data;
+    
+    const { name, email, mobile, address, ApartmentSize, Rooms, date } = data;
     let amount = 0;
-
     if (ApartmentSize > 100) {
-      if (rooms == 2) amount = 50;
-      if (rooms == 3) amount = 60;
-      if (rooms == 4) amount = 70;
-      if (rooms >= 4) amount = 80;
+      if (Rooms == 2) amount = 50;
+      if (Rooms == 3) amount = 60;
+      if (Rooms == 4) amount = 70;
+      if (Rooms >= 4) amount = 80;
     } else {
       amount = 40;
     }
@@ -38,7 +38,7 @@ export default function AddressForm({ createOrder, handleNext, user }) {
       mobile,
       address,
       ApartmentSize,
-      rooms,
+      Rooms,
       date,
       amount
     );
@@ -102,9 +102,9 @@ export default function AddressForm({ createOrder, handleNext, user }) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="rooms"
-              name="rooms"
-              label="Number of rooms"
+              id="Rooms"
+              name="Rooms"
+              label="Rooms"
               fullWidth
               autoComplete="rooms"
               inputRef={register}
