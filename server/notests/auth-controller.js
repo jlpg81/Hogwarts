@@ -1,15 +1,14 @@
-// const auth = require("../controller/auth-controller");
-require("dotenv").config();
-
-const runapp = require("../app");
 const request = require("supertest");
+
+require("dotenv").config();
+const runapp = require("../app");
 let app;
 
 beforeAll(() => {
   app = runapp(4001);
 });
 
-test("auth doesnt find jorrge@email.com", (done) => {
+test.skip("auth doesnt find jorrge@email.com", (done) => {
   request(app.app)
     .post("/login")
     .set("content-type", "application/json")
@@ -17,7 +16,7 @@ test("auth doesnt find jorrge@email.com", (done) => {
     .expect(400, done);
 });
 
-test("auth finds jorge@email.com but with a wrong password", (done) => {
+test.skip("auth finds jorge@email.com but with a wrong password", (done) => {
   request(app.app)
     .post("/login")
     .set("content-type", "application/json")
@@ -25,7 +24,7 @@ test("auth finds jorge@email.com but with a wrong password", (done) => {
     .expect(400, done);
 });
 
-test("auth finds jorge@email.com", (done) => {
+test.skip("auth finds jorge@email.com", (done) => {
   request(app.app)
     .post("/login")
     .set("content-type", "application/json")

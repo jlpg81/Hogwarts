@@ -7,10 +7,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Grid from "@material-ui/core/Grid";
 
 export default function Review({ order }) {
-  const products = [
-    { name: order.serviceName, desc: "Full Home Cleaning", price: order.cost },
-  ];
-  const addresses = order.customerAddress;
+  // const products = [
+  //   { name: order.serviceName, desc: "Full Home Cleaning", price: order.cost },
+  // ];
+  // const addresses = order.customerAddress;
 
   const useStyles = makeStyles((theme) => ({
     listItem: {

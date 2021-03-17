@@ -1,13 +1,15 @@
+import { AxiosResponse } from "axios";
+
 const axios = require("axios");
 
-const postService = (name) => {
+const postService = (name:string) => {
   return axios.post("http://localhost:4000/service", { name });
 };
 
 const getServices = async () => {
   try {
     let servicesList;
-    await axios("http://localhost:4000/services").then((res) => {
+    await axios("http://localhost:4000/services").then((res:AxiosResponse) => {
       servicesList = res.data;
     });
     return servicesList;
@@ -16,7 +18,7 @@ const getServices = async () => {
   }
 };
 
-const updateServiceList = async (id, name) => {
+const updateServiceList = async (id:string, name:string) => {
   try {
     return await axios.put(`http://localhost:4000/service/${id}`, { name });
   } catch (error) {
@@ -24,7 +26,7 @@ const updateServiceList = async (id, name) => {
   }
 };
 
-const deleteService = async (id) => {
+const deleteService = async (id:string) => {
   try {
     return await axios.delete(`http://localhost:4000/service/${id}`);
   } catch (error) {

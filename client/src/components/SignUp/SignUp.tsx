@@ -1,26 +1,23 @@
 import React from "react";
-import { Link } from "@reach/router";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { addCustomer } from "../../Services/customersService";
 import "./SignUp.css";
 import img from "./imgs/undraw_Relaxing_at_home_re_mror.svg";
+import Customer from "../../Services/customerServiceInterface"
+
+// import { Link } from "@reach/router";
+const {Link} = require('@reach/router')
 
 export default function SignUp() {
   const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = async ({ name, email, phone, location, password }) => {
+  const onSubmit = async (data: Customer) => {
     try {
-      const response = await addCustomer(
-        name,
-        phone,
-        email,
-        password,
-        location
-      );
+      const response = await addCustomer(data);
       console.log("response from signup react ==>", response);
       localStorage.setItem("token", response.headers["x-auth-token"]);
-      window.location = "/";
+      window.location.href = "/";
     } catch (error) {
       if (error.response && error.response.status === 400) {
         toast.error("User Already Exist");
